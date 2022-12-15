@@ -1,0 +1,5 @@
+data_dir = "./data"
+
+youtube_channels = [
+    "https://www.youtube.com/channel/UCYDVFfp_AN1WBiNwaf9522w",
+]

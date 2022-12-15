@@ -1,0 +1,8 @@
+yt-dlp
+transformers
+librosa
+torch
+pydub
+toml
+loguru
+tqdm
