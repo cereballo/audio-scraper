@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 import librosa
 from transformers import WhisperProcessor, WhisperForConditionalGeneration

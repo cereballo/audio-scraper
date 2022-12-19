@@ -4,9 +4,9 @@ from pathlib import Path
 import toml
 from loguru import logger as log
 
-from audio_splitter import AudioSplitter
-from youtube_channel_scraper import YouTubeChannelScraper
-from transcriber import Transcriber
+from audio_scraper.audio_splitter import AudioSplitter
+from audio_scraper.youtube_channel_scraper import YouTubeChannelScraper
+from audio_scraper.transcriber import Transcriber
 
 
 class PipelineConfig:
@@ -49,7 +49,7 @@ def parse_args():
     return parser.parse_args()
 
 
-def main():
+def collect():
     args = parse_args()
     config_dict = toml.loads(args.config.read_text())
     config = PipelineConfig(**config_dict)
@@ -58,4 +58,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    collect()
