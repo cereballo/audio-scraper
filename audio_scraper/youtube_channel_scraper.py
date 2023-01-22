@@ -8,7 +8,7 @@ class YouTubeChannelScraper:
 
     audio_dir: Path
 
-    def __init__(self, data_dir: Path):
+    def __init__(self, data_dir: Path = Path("data")):
         self.audio_dir = data_dir / "audio"
         self.audio_dir.mkdir(parents=True, exist_ok=True)
 

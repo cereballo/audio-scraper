@@ -17,7 +17,7 @@ class Transcriber:
         self.processor = WhisperProcessor.from_pretrained("openai/whisper-tiny")
         self.model = WhisperForConditionalGeneration.from_pretrained("openai/whisper-tiny")
 
-    def __call__(self, filepath: str, language: str = "en"):
+    def __call__(self, filepath: str, language: str = "en") -> str:
         wav, _ = librosa.load(filepath, sr=16_000)
         input_features = self.processor(wav, return_tensors="pt", sampling_rate=16_000).input_features 
         forced_decoder_ids = self.processor.get_decoder_prompt_ids(language=language, task="translate")
@@ -27,7 +27,9 @@ class Transcriber:
         basename = Path(filepath).parent.name
         download_dir = self.transcript_dir / basename
         download_dir.mkdir(exist_ok=True)
-        
+
         filename = Path(filepath).name.split(".")[0]
         result_path = download_dir / f"{filename}.txt"
         result_path.write_text(transcript)
+
+        return transcript

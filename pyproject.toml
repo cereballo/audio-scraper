@@ -29,4 +29,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-collect-data = "audio_scraper.pipeline:collect"
+scrape = "audio_scraper.pipeline:main"
