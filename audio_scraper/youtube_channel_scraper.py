@@ -24,7 +24,13 @@ class YouTubeChannelScraper:
                     "preferredcodec": "m4a",
                 }
             ],
-            "download-archive": ".ytdlp-archive"
+            "download_archive": ".ytdlp-archive",
+            "sleep_interval_requests": 1,
+            "sleep_interval": 5,
+            "max_sleep_interval": 8,
+            "ignoreerrors": True,
+            "throttledratelimit": 300_000,
+            "concurrent_fragment_downloads": 5
         }
 
         filepaths = []
@@ -36,7 +42,7 @@ class YouTubeChannelScraper:
                     requested_downloads = entry.get("requested_downloads")
                     if requested_downloads:
                         filepaths.append(requested_downloads[0]["filepath"])
-        except Exception as e: 
+        except Exception:
             pass
         return filepaths
 
