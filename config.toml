@@ -1,5 +1,9 @@
 data_dir = "./data"
 
+transcriber_model_size = "tiny"
+
 youtube_channels = [
-    "https://www.youtube.com/channel/UCYDVFfp_AN1WBiNwaf9522w",
+    # "https://www.youtube.com/channel/UCYDVFfp_AN1WBiNwaf9522w",
+    # "https://www.youtube.com/channel/UC8qlAJ4YSsgqTfbuPXFX5Uw?app=desktop",
+    "https://www.youtube.com/@arduinoversusevil2025"
 ]

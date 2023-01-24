@@ -10,12 +10,12 @@ packages = [{include = "audio_scraper"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 yt-dlp = "^2022.11.11"
-transformers = "^4.25.1"
-librosa = "^0.9.2"
-torch = "^1.13.1"
 pydub = "^0.25.1"
 toml = "^0.10.2"
 loguru = "^0.6.0"
+setuptools-rust = "^1.5.2"
+openai-whisper = "^20230117"
+tqdm = "^4.64.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.12.0"
@@ -30,3 +30,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 scrape = "audio_scraper.pipeline:main"
+transcribe = "audio_scraper.transcriber:transcribe"

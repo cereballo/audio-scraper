@@ -1,4 +1,6 @@
 data/
+.ytdlp-archive
+
 .DS_Store
 
 # Byte-compiled / optimized / DLL files

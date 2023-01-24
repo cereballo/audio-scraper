@@ -14,10 +14,12 @@ from audio_scraper.audio_filter import AudioFilter
 class PipelineConfig:
     data_dir: Path
     youtube_channels: list[str]
+    transcriber_model_size: str
 
-    def __init__(self, data_dir: Path | str, youtube_channels: list[str]) -> None:
+    def __init__(self, data_dir: Path | str, youtube_channels: list[str], transcriber_model_size: str) -> None:
         self.data_dir = Path(data_dir)
         self.youtube_channels = youtube_channels
+        self.transcriber_model_size = transcriber_model_size
 
 
 class Pipeline:
@@ -34,7 +36,7 @@ class Pipeline:
         self.scraper = YouTubeChannelScraper(config.data_dir)
         self.segmenter = AudioSegmenter(config.data_dir)
         self.audio_filter = AudioFilter(config.data_dir)
-        self.transcriber = Transcriber(config.data_dir)
+        self.transcriber = Transcriber(config.data_dir, config.transcriber_model_size)
 
         self.config = config
 
@@ -55,7 +57,7 @@ class Pipeline:
 
 def parse_args():
     parser = ArgumentParser()
-    parser.add_argument("--config", type=Path, default=Path("config.toml"), help="Path to config file.")
+    parser.add_argument("--config", type=Path, default=Path("config.toml"))
     return parser.parse_args()
 
 
