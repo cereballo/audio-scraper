@@ -11,7 +11,7 @@ class YouTubeChannelScraper:
         self.audio_dir = data_dir / "audio"
         self.audio_dir.mkdir(parents=True, exist_ok=True)
 
-    def _scrape_channel(self, channel_url: str) -> list[str]:
+    def _scrape_channel(self, channel_url: str) -> list[Path]:
         ydl_opts = {
             "format": "mp4/wav/best",
             "paths": {
@@ -41,12 +41,12 @@ class YouTubeChannelScraper:
                 for entry in info["entries"]:
                     requested_downloads = entry.get("requested_downloads")
                     if requested_downloads:
-                        filepaths.append(requested_downloads[0]["filepath"])
+                        filepaths.append(Path(requested_downloads[0]["filepath"]))
         except Exception:
             pass
         return filepaths
 
-    def __call__(self, channel_urls: list[str]) -> list[str]:
+    def __call__(self, channel_urls: list[str]) -> list[Path]:
         filepaths = []
         for url in channel_urls:
             _filepaths = self._scrape_channel(url)

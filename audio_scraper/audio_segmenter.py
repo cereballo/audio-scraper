@@ -13,8 +13,8 @@ class AudioSegmenter:
         self.chunks_dir = data_dir / "chunks"
         self.chunks_dir.mkdir(parents=True, exist_ok=True)
 
-    def __call__(self, filepath: str):
-        audio_segment = AudioSegment.from_file(filepath)
+    def __call__(self, filepath: Path):
+        audio_segment = AudioSegment.from_file(str(filepath))
         chunks = split_on_silence(
             audio_segment,
             silence_thresh=-40,

@@ -29,5 +29,6 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-scrape = "audio_scraper.pipeline:main"
+scrape = "audio_scraper.pipeline:run_all"
+refilter = "audio_scraper.pipeline:refilter"
 transcribe = "audio_scraper.transcriber:transcribe"

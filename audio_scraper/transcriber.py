@@ -24,8 +24,8 @@ class Transcriber:
 
         self.model = whisper.load_model(model_size)
 
-    def __call__(self, filepath: str, skip_existing: bool = False) -> str:
-        basename = Path(filepath).parent.name
+    def __call__(self, filepath: Path, skip_existing: bool = False) -> Path:
+        basename = filepath.parent.name
         download_dir = self.transcript_dir / basename
         download_dir.mkdir(exist_ok=True)
 
@@ -34,13 +34,13 @@ class Transcriber:
 
         if result_path.exists() and skip_existing:
             log.warning(f"{result_path} exists. Skipping.")
-            return result_path.read_text()
+            return result_path
 
-        result = self.model.transcribe(filepath)
+        result = self.model.transcribe(str(filepath))
         transcript = result["text"]
         result_path.write_text(transcript)
 
-        return transcript
+        return result_path
 
 
 def transcribe():
